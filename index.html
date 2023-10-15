@@ -4,8 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>test</h1>
+    <main>
+        <article>
+            <i class="fa-solid fa-flag"></i>
+        </article>
+        <section>
+        </section>
+    </main>
 </body>
+<script>
+    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    const field = [];
+    const row = [];
+    let bombRate = 25;
+    class Square {
+        constructor(name, bomb, number){
+            this.name = name;
+            this.bomb = bomb;
+            this.number = number;
+        }
+    }
+    for(let i = 0; i < 9; i++){
+        field[i] = new Array;
+    }
+    let num = 0;
+    for(let i = 0; i < 9; i++){
+        for(let j = 0; j < 9; j++){
+            let bombBooleon = Math.floor(Math.random() * 100);
+            if(bombBooleon <= bombRate){
+                field[i][j] = new Square(alphabet[i] + num, true, 0);
+            }else{
+                field[i][j] = new Square(alphabet[i] + num, false, 0);
+            }
+            num += 1;
+        }
+        num = 0;
+    }
+    console.log(field);
+    for(let i = 0; i < 9; i++){
+        let div = $(`<div></div>`);
+        for(let j = 0; j < 9; j++){
+            if(field[i][j].bomb == true){
+                let span = $(`<span><i class="fa-solid fa-bomb"></i></span>`);
+                div.append(span);
+            }else{
+                let span = $(`<span>${field[i][j].name}</span>`);
+                div.append(span);
+            }
+        }
+        $('section').append(div);
+    }
+</script>
 </html>
