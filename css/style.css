@@ -12,21 +12,40 @@ main {
   height: 100vh;
 }
 
-section {
+article {
+  display: flex;
+  -moz-column-gap: 2vh;
+       column-gap: 2vh;
+}
+
+.field {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid black;
 }
 
 div {
   display: flex;
 }
 
-span {
+button {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
   height: 6vh;
   width: 6vh;
+  color: transparent;
+  background-color: rgb(240, 240, 240);
+}
+
+.clicked {
+  color: black;
+  background-color: white;
+  font-weight: 600;
+}
+
+.flag {
+  background-color: red;
 }/*# sourceMappingURL=style.css.map */
